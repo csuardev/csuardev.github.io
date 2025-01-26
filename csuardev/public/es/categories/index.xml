@@ -5,7 +5,7 @@
     <link>http://localhost:1313/es/categories/</link>
     <description>Recent content in Categories on csuardev blog</description>
     <generator>Hugo</generator>
-    <language>es</language>
+    <language>es-ES</language>
     <managingEditor>csuardev@gmail.com (csuardev)</managingEditor>
     <webMaster>csuardev@gmail.com (csuardev)</webMaster>
     <atom:link href="http://localhost:1313/es/categories/index.xml" rel="self" type="application/rss+xml" />

@@ -2,7 +2,7 @@
 title: "{{ replace .Name "-" " " | title }}"
 author: ""
 type: ""
-date: {{ .Date }}
+date: {{ .Date | time.Format ":date_long" }}
 subtitle: ""
 image: ""
 tags: []

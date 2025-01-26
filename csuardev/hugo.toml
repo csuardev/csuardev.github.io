@@ -28,7 +28,7 @@ pygmentsCodefencesGuessSyntax = true
   logo = "img/avatar-icon.png" # Expecting square dimensions
   favicon = "img/favicon.ico"
   since = "2025"
-  dateFormat = "January 2, 2006"
+  dateFormat = "06/01/2006"
   commit = false
   rss = true
   comments = true
@@ -105,5 +105,6 @@ pygmentsCodefencesGuessSyntax = true
     contentDir = "content/en"
   [languages.es]
     contentDir = "content/es" 
+    languageCode = 'es-ES'
     [languages.es.params]
       subtitle = "Notas para mi yo futuro"

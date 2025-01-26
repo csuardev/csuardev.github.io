@@ -20,7 +20,29 @@ puedes comprobar si funciona y te identifica correctamente con el siguiente coma
 ```bash
 ssh -T git@github.com
 ```
-  
+Setup de Hugo para pode comenzar(ver prerequisitos y otros metodos de instalacion en https://gohugo.io/installation/linux/)
+
+En mi caso lo voy instalar en linux(mint) y usando los prebuilt binaries
+Para ello vamos a la pagina de releases de Hugo y descargams la version que nos interese, en mi caso usare la mas reciente que es la 0.142.0
+https://github.com/gohugoio/hugo/releases/tag/v0.142.0
+Descomprimimos el archivo descargad usando:
+```bash
+tar -xvzf filname
+```
+Esto nos genera tres archivos. Nos interesa el que contiene Hugo. Si el archivo contiente el nombre de la version podemos renombrar el archivo a hugo 
+```sh
+mv nombreArchivo nuevoNombre
+```
+Y movemos este archivo renombrado a /usr/local/bin 
+```sh
+mv hugo /usr/local/bin/
+```
+Esto nos permite invocar hugo directamente desde la terminal
+Si el comando nos da un error de permisos tendremos que lanzarlo como sudo
+```sh
+sudo mv hugo /usr/local/bin/
+```
+
 hacemos un clone del proyecto y entramos
 dentro generamos un nuevo proyecto de hugo usando:
 

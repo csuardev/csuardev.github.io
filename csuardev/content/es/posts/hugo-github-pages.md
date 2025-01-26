@@ -8,6 +8,19 @@ Generar sitio estatico con Hugo:
 generamos el proyecto en github ( si queremos que sea nuestro perfil tiene que ser nombreUsuario.github.io el nombre del repo)
 -- generamos y seteamos en nuestro usuario la clave ssh para poder luego hacer los commits
 
+generar una clave ssh para github:
+```bash 
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+more details: https://docs.github.com/en/enterprise-server@3.14/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+
+copy .pub generated key 
+
+puedes comprobar si funciona y te identifica correctamente con el siguiente comando:
+```bash
+ssh -T git@github.com
+```
+  
 hacemos un clone del proyecto y entramos
 dentro generamos un nuevo proyecto de hugo usando:
 

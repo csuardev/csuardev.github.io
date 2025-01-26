@@ -12,6 +12,9 @@ pygmentsCodefencesGuessSyntax = true
 #pygmentsUseClassic = true
 #pygmentOptions = "linenos=inline"
 
+[markup.goldmark.renderer]
+  unsafe = true
+
 [Services]
   [Services.Disqus]
     # Shortname = "XXX"
@@ -24,6 +27,7 @@ pygmentsCodefencesGuessSyntax = true
   mainSections = ["post","posts"]
   logo = "img/avatar-icon.png" # Expecting square dimensions
   favicon = "img/favicon.ico"
+  since = "2025"
   dateFormat = "January 2, 2006"
   commit = false
   rss = true

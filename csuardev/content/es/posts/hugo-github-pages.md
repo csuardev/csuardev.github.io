@@ -3,29 +3,35 @@ date = '2025-01-26T10:11:13+01:00'
 draft = true
 title = 'Crear un blog personal para desarrolladores con Hugo y Github Pages'
 +++
-Generar sitio estatico con Hugo:
+Para generar nuestra pagina personal y alojarla en github pages lo primero que haremos es generar el proyecto en github ( si queremos que sea nuestro perfil tiene que ser nombreUsuario.github.io el nombre del repositorio)
 
-generamos el proyecto en github ( si queremos que sea nuestro perfil tiene que ser nombreUsuario.github.io el nombre del repo)
--- generamos y seteamos en nuestro usuario la clave ssh para poder luego hacer los commits
+Lo siguiente si no lo tenemos previamente configurado sera configurar nuestra clave ssh en github para poder hacer los push de nuestros cambios en los proyectos.
+
+
+#### Generar y configurar la clave ssh 
 
 generar una clave ssh para github:
 ```bash 
 ssh-keygen -t ed25519 -C "your_email@example.com"
 ```
-more details: https://docs.github.com/en/enterprise-server@3.14/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+[documentacion oficial github](https://docs.github.com/en/enterprise-server@3.14/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 
-copy .pub generated key 
+Copiamos la clave ssh publica que acabamos de generar (archivo .pub que se encuentra dentro de ~/.ssh/) y lo pegamos dentro de nuestro perfil de github en el apartado de claves ssh. 
 
-puedes comprobar si funciona y te identifica correctamente con el siguiente comando:
+Podemos comprobar si funciona y nos identifica correctamente con el siguiente comando:
 ```bash
 ssh -T git@github.com
 ```
-Setup de Hugo para pode comenzar(ver prerequisitos y otros metodos de instalacion en https://gohugo.io/installation/linux/)
 
-En mi caso lo voy instalar en linux(mint) y usando los prebuilt binaries
-Para ello vamos a la pagina de releases de Hugo y descargams la version que nos interese, en mi caso usare la mas reciente que es la 0.142.0
-https://github.com/gohugoio/hugo/releases/tag/v0.142.0
-Descomprimimos el archivo descargad usando:
+
+#### Instalar Hugo
+
+ver prerequisitos y otros metodos de instalacion en https://gohugo.io/installation/
+
+En nuestro caso lo vamos a instalar en linux(mint) y usando los prebuilt binaries.
+Para ello vamos a la pagina de releases de Hugo y descargams la version que nos interese, en nuestro caso usaremos la mas reciente en el momento de escribir este post que es la [0.142.0](
+https://github.com/gohugoio/hugo/releases/tag/v0.142.0)
+Descomprimimos el archivo descargado usando:
 ```bash
 tar -xvzf filname
 ```
@@ -38,18 +44,19 @@ Y movemos este archivo renombrado a /usr/local/bin
 mv hugo /usr/local/bin/
 ```
 Esto nos permite invocar hugo directamente desde la terminal
-Si el comando nos da un error de permisos tendremos que lanzarlo como sudo
+Si el comando mv nos da un error de permisos tendremos que lanzarlo como sudo
 ```sh
 sudo mv hugo /usr/local/bin/
 ```
 
-hacemos un clone del proyecto y entramos
-dentro generamos un nuevo proyecto de hugo usando:
+
+#### Generar una web basica con Hugo
+
+Hacemos un clone del proyecto, entramos y generamos un nuevo proyecto de Hugo usando:
 
 ```bash
 hugo new site nombreProyecto
 ```
-
 
 Esto nos dara como resultado algo similar a esto: 
 ```bash
@@ -68,21 +75,21 @@ Just a few more steps...
 See documentation at https://gohugo.io/.
 ```
 Seguimos los pasos indicados:
--Entramos en la raiz del proyecto
-- una vez dentro tendremos que descargar un tema, en nuestro caso usaremos una adaptacion de beautiful de jekkyl para hugo :
+- Entramos en la raiz del proyecto
+- una vez dentro tendremos que descargar un tema, en nuestro caso usaremos una adaptacion de beautiful de jekkyl para hugo (Si preferimos seguir el tutorial oficial podemos usar el que nos recomienda o cualquier otro que nos guste de los muchos disponibles en la web de [temas de Hugo](https://themes.gohugo.io/)) :
 ```bash
 $ git submodule add https://github.com/halogenica/beautifulhugo.git themes/beautifulhugo
 ```
 
-Esto generara todo lo necesario para el proyecto, incluido un ejemplo dentro de la carpeta themes
+Esto generara todo lo necesario para el proyecto, incluido un ejemplo dentro de la carpeta themes.
 
-usamos como base el ejemplo que nos viene dentro de la carpeta theme para confirmar que todo se ha configurado correctamente, para ello hacemos:
+Usamos como base el ejemplo que nos viene dentro de la carpeta theme para confirmar que todo se ha configurado correctamente. Para ello copiamos el ejemplo en nuestro directorio raiz de hugo:
 ```bash
 $ cp -r themes/beautifulhugo/exampleSite/* . -iv
 ```
 Nos preguntara si queremos sobreescribir nuestro archivo hugo.toml. Como no hemos metido ninguna configuracion propia le decimos que si.
 
-Para confirmar si todo ha ido como deberia lanzamos el servidor de hugo que nos permitira el sitio ( y ademas permite hacer cambios en caliente y verlos al instante en el navegador)
+Para confirmar si todo ha ido como deberia lanzamos el servidor de hugo que nos permitira ver la pagina web en nuestro local renderizada ( y ademas permite hacer cambios en caliente y verlos al instante en el navegador)
 
 ```bash
 hugo serve
@@ -112,13 +119,37 @@ Press Ctrl+C to stop
 ```
 Podemos ver lo que hemos generado accediendo a la url que aparece en la consola
 
-Si con esto hacemos un push a origin veremos que aun no es posible ver nuestro sitio desplegado en el dominio usuario.github.io . Esto es asi porque por defecto github intenta usar jekyll para generar nuestro sitio a partir de los ficheros
+Hugo serve admite varias opciones de parametros que permiten modificar su comportamiento, decidiendo por ejemplo que no cachee ciertos archivos o que muestre los drafts para poder revisarlos en local antes de convertirlos en posts definitivos.
 
-Para que github Pages funcione podriamos o bien hacer que hugo generase los estaticos en la raiz en lugar de en la carpeta public ( github pages busca por defecto un index.html en el directorio raiz) o hacer que automaticamente se generen los estaticos al subir con github actions
 
-para que cuando subamos cambios en el codigo veamos automaticamente los cambios generados ( recordemos que hugo debe compilar los fuentes y generar los estaticos que colocara en la carpeta public) 
+#### Configurar Github Pages para funcionar con Hugo
 
-https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#publishing-with-a-custom-github-actions-workflow
+Si con lo que hemos generado hacemos un push a origin veremos que aun no es posible ver nuestro sitio desplegado en el dominio usuario.github.io . Esto es asi porque por defecto github intenta usar jekyll para generar nuestro sitio a partir de los ficheros.
 
-Si no generamos el proyecto directamente en la raiz del repositorio es necesario cambiar el paso de generacion de hugo para que primero entre en la carpeta del proyecto añadiendo cd nombreProyecto && hugo...
-Esto lo cambiamos al usar el github action asociado a hugo que hay precreado
+Para que github Pages funcione podriamos o bien hacer que hugo generase los estaticos en la raiz en lugar de en la carpeta public ( github pages busca por defecto un index.html en el directorio raiz) o hacer que automaticamente se generen los estaticos al subir con github actions para que cuando subamos cambios en el codigo veamos automaticamente los cambios generados (hugo debe compilar los fuentes y generar los estaticos que colocara en la carpeta public) 
+[Mas informacion sobre como funciona Hugo](https://www.youtube.com/watch?v=ZFL09qhKi5I)
+[Documentacion de github sobre la configuracion de github actions para publicar sitios estaticos en github pages](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#publishing-with-a-custom-github-actions-workflow)
+
+Para activar github actions con hugo debemos ir al settings del proyecto de github y buscar en el apartado pages:
+![github pages config](/images/hugo-github-pages/github-config-pages.png)
+
+Desde esta pagina inicialmente nos aparecera seleccionado en el desplegable 'Deploy from a branch' y debemos cambiarlo a 'Github Actions'. Al hacerlo nos dara la opcion de seleccionar un workflow preconfigurado, buscamos Hugo y seleccionamos el que nos aparece. Esto generara en el repositorio una carpet .github/workflows dentro de la que se encuentra la configuracion de despliegue de nuestro codigo.
+
+Si no generamos el proyecto directamente en la raiz del repositorio (como es nuestro caso) es necesario cambiar el paso de generacion de hugo en la configuracion de github actions para que primero entre en la carpeta del proyecto añadiendo cd nombreProyecto && hugo... de forma que el paso de generacion de hugo queda asi:
+```sh
+      - name: Build with Hugo
+        env:
+          HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
+          HUGO_ENVIRONMENT: production
+        run: |
+          cd ./nombreProyecto && hugo \
+            --minify \
+            --baseURL "${{ steps.pages.outputs.base_url }}/"
+```
+Ademas debemos editar el ultimo paso para indicarle que la carpeta donde se deben generar los estaticos no esta en la raiz sino dentro de nuestro nombre de proyecto:
+```sh
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./nombreProyecto/public
+```

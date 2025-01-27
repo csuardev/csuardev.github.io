@@ -15,6 +15,19 @@
                 href="http://localhost:1313/"
                 />
   </url><url>
+    <loc>http://localhost:1313/posts/hugo-github-pages/</loc>
+    <lastmod>2025-01-26T10:11:13+01:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es-ES"
+                href="http://localhost:1313/es/posts/hugo-github-pages/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/posts/hugo-github-pages/"
+                />
+  </url><url>
     <loc>http://localhost:1313/posts/</loc>
     <lastmod>2025-01-26T10:11:13+01:00</lastmod>
     <xhtml:link

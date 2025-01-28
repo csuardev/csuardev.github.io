@@ -126,11 +126,14 @@ Hugo serve admite varias opciones de parametros que permiten modificar su compor
 
 Si con lo que hemos generado hacemos un push a origin veremos que aun no es posible ver nuestro sitio desplegado en el dominio usuario.github.io . Esto es asi porque por defecto github intenta usar jekyll para generar nuestro sitio a partir de los ficheros.
 
-Para que github Pages funcione podriamos o bien hacer que hugo generase los estaticos en la raiz en lugar de en la carpeta public ( github pages busca por defecto un index.html en el directorio raiz) o hacer que automaticamente se generen los estaticos al subir con github actions para que cuando subamos cambios en el codigo veamos automaticamente los cambios generados (hugo debe compilar los fuentes y generar los estaticos que colocara en la carpeta public) 
-[Mas informacion sobre como funciona Hugo](https://www.youtube.com/watch?v=ZFL09qhKi5I)
+Para que github Pages funcione podriamos o bien hacer que hugo generase los estaticos en la raiz en lugar de en la carpeta public ( github pages busca por defecto un index.html en el directorio raiz) o hacer que automaticamente se generen los estaticos al subir con github actions para que cuando subamos cambios en el codigo veamos automaticamente los cambios generados (hugo debe compilar los fuentes y generar los estaticos que colocara en la carpeta public).
+
+[Video con mas informacion sobre como funciona Hugo](https://www.youtube.com/watch?v=ZFL09qhKi5I)
+
 [Documentacion de github sobre la configuracion de github actions para publicar sitios estaticos en github pages](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#publishing-with-a-custom-github-actions-workflow)
 
 Para activar github actions con hugo debemos ir al settings del proyecto de github y buscar en el apartado pages:
+
 ![github pages config](/images/hugo-github-pages/github-config-pages.png)
 
 Desde esta pagina inicialmente nos aparecera seleccionado en el desplegable 'Deploy from a branch' y debemos cambiarlo a 'Github Actions'. Al hacerlo nos dara la opcion de seleccionar un workflow preconfigurado, buscamos Hugo y seleccionamos el que nos aparece. Esto generara en el repositorio una carpet .github/workflows dentro de la que se encuentra la configuracion de despliegue de nuestro codigo.
@@ -153,3 +156,65 @@ Ademas debemos editar el ultimo paso para indicarle que la carpeta donde se debe
         with:
           path: ./nombreProyecto/public
 ```
+
+Una vez que hemos hecho esto, si lo hacemos en local deberemos hacer un push y esto generara un nuevo build que se lanzara con la nueva configuracion. Si hemos hecho el cambio directamente desde el editor de github al generar el commit se lanzara el despliegue y si todo ha ido bien podremos ver la web de ejemplo como la que veiamos en local en la url nombreProyecto.github.io . El estado de los diferentes deploys los podemos ver en varios sitios, pero el mas sencillo es en el repositorio de github donde nos aparecera en la columna derecha un apartado con los deployments. Nos aparecera el ultimo y ademas podremos consultar los anteriores.
+
+![deployments from github](/images/hugo-github-pages/github-deployments.png)
+
+Si todo ha ido bien ya podemos generar nuestro primer contenido propio. Para esto podemos usar el comando hugo new content/ruta/contenido/nombre_post.md, o bien podriamos crear directamente un archivo .md en el directorio dentro de contenido que elijamos.
+
+Cuando usamos el comando hugo new content/... hugo aplicara los templates del tema en cuestion, por lo que dependera del tema que estamos usando lo que nos creara, pero de forma normal el comando creara un archivo .md en la carpeta correspondiente con una *cabecera* (front matter) con la fecha, titulo, si se trata de un draft o no , tags...
+
+Ejemplo archivo .md con su *cabecera* :
+```md
+---
+title: About me
+subtitle: Why you'd want to go on a date with me
+comments: false
+---
+
+My name is Inigo Montoya. I have the following qualities:
+
+- I rock a great mustache
+- I'm extremely loyal to my family
+
+What else do you need?
+
+### my history
+
+To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](https://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+```
+
+En nuestro caso siguiendo con el ejemplo para beautiful hugo generamos el post en la ruta content/posts/nombre-articulo.md . Por defecto el tema nos genera un titulo a partir del nombre del archivo, pero somos totalmente libres para cambiarlo. En este archivo .md podemos usar markdown normal que luego renderizara a html en la carpeta public.
+
+En el caso del tema beautiful hugo viene preconfigurado para que sea sencillo mantener una web multidioma, de forma que podemos indicar en el fichero hugo.toml la jerarquia de idiomas y luego bastara con crear contenido dentro de la ruta de cada idioma para que solo se muestre cuando se esta visualizando la pagina en ese idioma.
+```toml
+[languages]
+  [languages.en] 
+    contentDir = "content/en"
+  [languages.es]
+    contentDir = "content/es"
+```
+```
+content/      content/        
+└── en/       └── es/        
+    ├── page/     ├── page/ 
+    └── post/     └── post/ 
+
+```
+Ademas, si se mantienen los nombres del fichero entre ambos (o varios) idiomas se enlazaran para que aparezcan uno como traduccion del otro.
+```
+content/              content/        
+└── en/               └── es/        
+    ├── page/         ├── page/ 
+    |   └── about.md      └── about.md
+    └── post/         └── post/ 
+
+```
+
+Mas informacion sobre otras configuraciones que ofrece el tema [aqui](https://github.com/halogenica/beautifulhugo)
+
+A partir de aqui todo lo que queda es jugar con las opciones que ofrece hugo, probar diferentes temas que ofrecen diferentes configuraciones por defecto que nos pueden facilitar el trabajo segun el tipo de sitio que queramos crear, e incluso modificar alguno a nuestro gusto si algo no nos temina de encajar con nuestra forma de trabajar.
+
+
+

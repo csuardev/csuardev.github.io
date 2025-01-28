@@ -15,7 +15,7 @@
       <link>http://localhost:1313/es/posts/hugo-github-pages/</link>
       <pubDate>Sun, 26 Jan 2025 10:11:13 +0100</pubDate><author>csuardev@gmail.com (csuardev)</author>
       <guid>http://localhost:1313/es/posts/hugo-github-pages/</guid>
-      <description>&lt;p&gt;Para generar nuestra pagina personal y alojarla en github pages lo primero que haremos es generar el proyecto en github ( si queremos que sea nuestro perfil tiene que ser nombreUsuario.github.io el nombre del repositorio)&lt;/p&gt;&#xA;&lt;p&gt;Lo siguiente si no lo tenemos previamente configurado sera configurar nuestra clave ssh en github para poder hacer los push de nuestros cambios en los proyectos.&lt;/p&gt;&#xA;&lt;p&gt;1- Generamos y seteamos en nuestro usuario la clave ssh para poder luego hacer los commits&lt;/p&gt;</description>
+      <description>&lt;p&gt;Para generar nuestra pagina personal y alojarla en github pages lo primero que haremos es generar el proyecto en github ( si queremos que sea nuestro perfil tiene que ser nombreUsuario.github.io el nombre del repositorio)&lt;/p&gt;&#xA;&lt;p&gt;Lo siguiente si no lo tenemos previamente configurado sera configurar nuestra clave ssh en github para poder hacer los push de nuestros cambios en los proyectos.&lt;/p&gt;&#xA;&lt;h4 id=&#34;generar-y-configurar-la-clave-ssh&#34;&gt;Generar y configurar la clave ssh&lt;/h4&gt;&#xA;&lt;p&gt;generar una clave ssh para github:&lt;/p&gt;</description>
     </item>
     <item>
       <title>About me</title>

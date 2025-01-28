@@ -1,6 +1,6 @@
 +++
 date = '2025-01-26T10:11:13+01:00'
-draft = true
+draft = false
 title = 'Crear un blog personal para desarrolladores con Hugo y Github Pages'
 +++
 Para generar nuestra pagina personal y alojarla en github pages lo primero que haremos es generar el proyecto en github ( si queremos que sea nuestro perfil tiene que ser nombreUsuario.github.io el nombre del repositorio)

@@ -1,3 +1,4 @@
+enableRobotsTXT = true
 baseurl = "https://csuardev.github.io"
 DefaultContentLanguage = "en"
 title = "csuardev blog"

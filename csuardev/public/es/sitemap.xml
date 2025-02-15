@@ -31,18 +31,6 @@
                 href="http://localhost:1313/es/posts/"
                 />
   </url><url>
-    <loc>http://localhost:1313/es/page/about/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/page/about/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="es-ES"
-                href="http://localhost:1313/es/page/about/"
-                />
-  </url><url>
     <loc>http://localhost:1313/es/categories/</loc>
     <xhtml:link
                 rel="alternate"
@@ -65,6 +53,18 @@
                 rel="alternate"
                 hreflang="es-ES"
                 href="http://localhost:1313/es/page/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/es/page/about/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/page/about/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es-ES"
+                href="http://localhost:1313/es/page/about/"
                 />
   </url><url>
     <loc>http://localhost:1313/es/tags/</loc>

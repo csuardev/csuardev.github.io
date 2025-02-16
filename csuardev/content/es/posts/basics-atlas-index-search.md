@@ -1,9 +1,10 @@
 +++
-date = '16 de febrero de 2025'
+date = '2025-02-16T10:11:13+01:00'
 draft = true
 title = 'Mongo Atlas Search Index: Una introduccion'
 +++
 //reference : 
+prueba
 https://medium.com/@sumitkessar/atlas-search-made-easy-a-summary-guide-for-developers-883c27886987
 https://medium.com/@sumitkessar/atlas-search-made-easy-a-summary-guide-for-developers-883c27886987#b578
 ### MongoDB vs Mongo Atlas

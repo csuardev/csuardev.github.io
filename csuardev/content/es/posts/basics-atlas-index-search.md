@@ -9,6 +9,12 @@ https://medium.com/@sumitkessar/atlas-search-made-easy-a-summary-guide-for-devel
 https://medium.com/@sumitkessar/atlas-search-made-easy-a-summary-guide-for-developers-883c27886987#b578
 https://www.mongodb.com/developer/products/atlas/atlas-search-vs-regex/ 
 https://www.mongodb.com/docs/atlas/atlas-search/performance/query-performance/
+replace $text and $regex with $search
+https://www.mongodb.com/docs/atlas/performance-advisor/recommend-search-text/#std-label-text-to-search
+https://www.mongodb.com/docs/atlas/schema-suggestions/case-insensitive-regex/#std-label-regex-to-search
+
+
+diagrama hecho en mermaid , editable:https://mermaid.live/edit#pako:eNqFUkFuwjAQ_Iq151A10AjqQyUol0hFasuthIOJlyQSsZGxK2iUv3dxkhKoqvqS2dHM7HrjClItEThkRuxz9vKeKEbn4DYNMdepK1HZQ8Ofz3SVANEs5GyhVabnMza1O3FgSxQmzRNYs8HgicWrWH2isShZrCQe15eEWZswvCS8OTSnQmWNlsBPzMX23NpG_Kohe0Wz1aYUKsUbFyqZqAbGnm_bUVCLOKv8XQLmB6opoK_3fUjtv9fa0a22mYbEDfhH3V2Y9B1sHb-G6FZC0g7-Je2tgtS9qjX4MSCAEokuJP336mxPwOZY0vY4QYlb4XY2gUTVJBXO6uVJpcCtcRiA0S7Lu8LtpbA4LwS9lrIj90J9aN0vgVdwBH4fwAl4GN1FD-MwGoXhZBINH8dRHcCXN4QBoCysNovmUfq3WX8DjOvOOQ
 ### MongoDB vs Mongo Atlas
 
 ### Mongo Atlas Search Index
@@ -32,6 +38,22 @@ frente a $text y $regex mongo atlas search index lo que crea realmente por debaj
 - Support for multiple data types: text, numerics, dates, geospatial, boolean, and objectID
 - Support for 36 languages (you can see the full list in our documentation)
 - Support for Facet in Search
+
+|Feature             |Atlas Search                                    |$text Search (with Text Index)    |$regex Search (typical)                                       |
+|--------------------|------------------------------------------------|----------------------------------|--------------------------------------------------------------|
+|Indexing            |Inverted Index (highly optimized)               |Text Index (optimized for text)   |No Index (usually)                                            |
+|Performance         |Excellent (fast, scalable)                      |Good (generally faster than regex)|Poor (slow, resource-intensive)                               |
+|**Fuzzy Matching**      |**Yes (handles typos, misspellings)**               |**No (exact matching)**               |**Limited (requires complex regex)**                              |
+|**Partial Matching**    |**Yes (finds parts of words)**                      |**No (whole word matching)**          |**Yes (but can be inefficient)**                                  |
+|**Synonyms**            |**Yes (can be configured)**                         |**No**                                |**No**                                                            |
+|Relevance Ranking   |Yes (scores results)                            |Yes (scores results)              |No                                                            |
+|Faceting            |Yes (for filtering and refinement)              |No                                |No                                                            |
+|**Autocomplete**        |**Yes (for suggestions)**                           |**No**                                |**Difficult to implement effectively**                           |
+|Multilingual Support|Yes                                             |Yes (but requires configuration)  |Limited                                                       |
+|Deployment          |MongoDB Atlas (cloud-based)                     |Any MongoDB deployment            |Any MongoDB deployment                                        |
+|Use Cases           |Complex search, large datasets, high performance|Basic text search, medium datasets|Pattern matching, small datasets, specific string manipulation|
+|Resource Usage      |Moderate (dedicated service)                    |Moderate (index size)             |High (CPU intensive)                                          |
+|Complexity          |More complex setup, powerful features           |Simpler setup, basic features     |Simple for basic cases, complex for advanced patterns         |
 
 Ademas Mongo ha dejado de realizar desarrollos y mejoras en las funcionalidades de $text y $regex desde 2015 y ha centrado sus esfuerzos de mejora en busquedas basadas en relevancia se centran ahora mismo en $search (esto es algo a tener en cuenta en proyectos con una vida futura larga, que podran beneficiarse de las mejoras que se vayan metiendo)
 ## Funcionalidades

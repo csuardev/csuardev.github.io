@@ -1,10 +1,10 @@
 +++
 title = '{{ replace .File.ContentBaseName "-" " " | title }}'
-subtitle: ""
+subtitle= ''
 draft = true
-author: ""
-description: ""
-date: {{ .Date | time.Format ":date_long" }}
-image: ""
-tags: []
+author= '{{ .Site.Params.author.name}}'
+description= ""
+date= '{{ .Date }}'
+image= ''
+tags= []
 +++

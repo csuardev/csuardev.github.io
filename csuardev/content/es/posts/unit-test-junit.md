@@ -1,8 +1,12 @@
 +++
 title = 'Unit Test Junit'
+subtitle= ''
 draft = true
-date= 22 de febrero de 2025
-
+author= 'csuardev'
+description= 'Articulo sobre los conceptos basicos de test unitarios y ejemplos en java con JUnit'
+date= '2025-02-22T22:15:28+01:00'
+image= ''
+tags= []
 +++
 
 ## Que son

@@ -9,6 +9,7 @@ image= ''
 tags= []
 +++
 
+
 ## Que son
 Los test unitarios son un tipo de prueba que pretende comprobar que el comportamiento de un pequeño trozo de codigo, de forma aislada y para unos parametros controlados. Que constituye esa unidad que tiene entidad suficiente para ser probada de forma aislada es una de las principales variables para realizar test unitarios de calidad y que realmente sean utiles, como veremos a continuacion.
 
@@ -34,9 +35,33 @@ Como hemos comentado previamente todos los test unitarios no nacen iguales, algu
 
 - **Foco:** Junto a lo anterior es necesario ajustar los tests como ya hemos comentado y solo debemos comprobar una cosa dentro de cada test. De nada sirve que nombremos de forma *"correcta"* si el nombre acaba siendo test_suma_enterosPositivos_y_enterosNegativos por haber juntado dos casos de uso en uno, o que probemos en el mismo test el caso OK y el caso Error.
 
-- **Automatizacion:** Los test al igual que deben ser rapidos para ejecutarse de forma regular, deben ser automatizables, nadie va a darle uno a unos test que hay que lanzar uno a uno o cuyo resultado hay que confirmar a mano si ha sido el esperado. Para esto sirven las muchas librerias de test que existen para diferentes lenguajes. En este articulo veremos el ejemplo de JUnit que es una de las mas usadas en el entorno Java.
-
+- **Automatizacion:** Los test al igual que deben ser rapidos para ejecutarse de forma regular, deben ser automatizables, nadie va a darle uno a unos test que hay que lanzar uno a uno o cuyo resultado hay que confirmar a mano si ha sido el esperado. Para esto sirven las muchas librerias de test que existen para diferentes lenguajes. En este articulo veremos el ejemplo de JUnit que es una de las mas usadas en el entorno Java. Ademas es importante incluir los tests como parte del ciclo de vida del codigo como paso previo al despligue, incluyendolos por ejemplo como paso previo al despliegue en los pipeline de integracion continua.
+- 
 - **Patron AAA:** Una de las mejores formas de plantear un test y que tenga un minimo de coherencia es seguir este patron que consiste en establecer 3 subfases dentro del test **A**rrange(preparar): inicializar el contexto en el que se va a realizar el test (variables, mocks si es necesario, etc...), **A**ct(actuar): Hacer la llamada al codigo que estemos probando, por ejemplo llamando al metodo con los parametros que hemos preparado en la fase anterior, y por ultimo **A**ssert(comprobar): finalmente se debe comprobar que el resultado obtenido es el esperado, ya sea un calculo correcto, un estado del sistema o la devolucion de un error concreto.
+//TODO agregar soporte para mermaid para que esto se vea directamente renderizado
+```mermaid
+graph TD
+    A[Pruebas Unitarias Bien Diseñadas] --> B(Aislamiento);
+    A --> C(Repetibilidad);
+    A --> D(Velocidad);
+    A --> E(Claridad);
+    A --> F(Enfoque);
+    A --> G(Automatización);
+    A --> H(Nombres Descriptivos);
+    A --> I(Patrón AAA);
+
+    B --> B1[Simulación/Stubbing];
+    C --> C1[Resultados Deterministas];
+    D --> D1[Ejecución Rápida];
+    E --> E1[Código Legible];
+    E --> E2[Estructura Lógica];
+    F --> F1[Propósito Único];
+    F --> F2[Una Asertción por Prueba ];
+    G --> G1[Ejecución Automatizada];
+    H --> H1[NombreMétodo_Escenario_ComportamientoEsperado];
+    I --> I1[Organizar-Actuar-Afirmar];
+```
+
 
 ## Ejemplos con Junit
 

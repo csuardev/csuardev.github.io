@@ -1,6 +1,6 @@
 enableRobotsTXT = true
 baseurl = "https://csuardev.github.io"
-DefaultContentLanguage = "en"
+DefaultContentLanguage = "es"
 title = "csuardev blog"
 # Using theme as git submodule
 theme = "beautifulhugo"
